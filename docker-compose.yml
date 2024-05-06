@@ -1,0 +1,16 @@
+services:
+  mysql:
+    container_name: ticket_container
+    image: mysql:latest
+    ports:
+      - "8001:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: laravel_db
+      MYSQL_USER: laravel_user
+      MYSQL_PASSWORD: laravel_password
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
