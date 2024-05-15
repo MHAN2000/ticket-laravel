@@ -12,7 +12,7 @@ class EducationLevelController extends Controller
      */
     public function index()
     {
-        //
+        return view('educationLevels.index');
     }
 
     public function getEducationLevels() {

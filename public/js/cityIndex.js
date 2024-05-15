@@ -25,7 +25,6 @@ const initCitiesTable = () => {
 }
 
 const deleteCity = async id => {
-    console.log(id);
     const result = await validateDelete();
     if (result.isDenied) return;
 
