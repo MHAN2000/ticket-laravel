@@ -17,6 +17,19 @@ const fillCitiesSelect = async () => {
     }
 }
 
+const getAvailableTimes = async (e) => {
+    console.log(e.target.value);
+    const url = route('tickets.available_times', e.target.value)
+    const req = await fetch(url);
+    if (req.ok) {
+        const res = await req.json();
+        document.getElementById('availableHours').innerHTML = '<option>Elige un horario</option>';
+        res.forEach(x => {
+            document.getElementById('availableHours').innerHTML += `<option value="${x}">${x}</option>`
+        });
+    }
+}
+
 const fillSubjectsSelect = async () => {
     const url = route('subjects.getSubjects');
     const req = await fetch(url);

@@ -19,6 +19,14 @@
 <div class="col-12">
     <input name="email" placeholder="Email" /> 
 </div>
+<div class="col-12">
+    <input type="date" name="date" onchange="getAvailableTimes(event)"/>
+</div>
+<div class="col-12">
+    <select name="time" id="availableHours">
+        <option>Elige un horario</option>
+    </select>
+</div>
 <div class="col-6">
     <select name="city_id" id="citiesSelect">
         <option selected disabled>Elige una ciudad</option>

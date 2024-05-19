@@ -23,6 +23,10 @@ class Ticket extends Model
         return $this->belongsTo(City::class, 'city_id', 'id');
     }
 
+    public function subject() {
+        return $this->belongsTo(Subject::class, 'subject_id', 'id');
+    }
+
     public function educationLevel() {
         return $this->belongsTo(EducationLevel::class, 'education_level_id', 'id');
     }

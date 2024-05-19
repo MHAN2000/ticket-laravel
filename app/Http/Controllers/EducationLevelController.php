@@ -4,14 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\EducationLevel;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class EducationLevelController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->ajax()) {
+            $educationLevels = EducationLevel::all();
+            return DataTables::of($educationLevels)->make();
+        }
         return view('educationLevels.index');
     }
 
@@ -25,7 +30,7 @@ class EducationLevelController extends Controller
      */
     public function create()
     {
-        //
+        return view('educationLevels.create');
     }
 
     /**
@@ -33,7 +38,8 @@ class EducationLevelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $educationLevel = EducationLevel::create($request->all());
+        return $educationLevel;
     }
 
     /**

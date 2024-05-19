@@ -5,15 +5,21 @@ namespace App\Http\Controllers;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Yajra\DataTables\Facades\DataTables;
 
 class TicketController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if ($request->ajax()) {
+            $ticket = Ticket::with('city', 'educationLevel', 'status', 'responsable', 'subject')->get();
+            return DataTables::of($ticket)->make();
+        }
+
+        return view('tickets.index');
     }
 
     /**
@@ -22,6 +28,19 @@ class TicketController extends Controller
     public function create()
     {
         return view('tickets.create');
+    }
+
+    public function getAvailableTimes($date) {
+        $times = array('07:00:00', '07:30:00', '08:00:00', '08:30:00', '09:00:00', '09:30:00', '10:00:00', '10:30:00', '11:00:00', '11:30:00', '12:00:00', '12:30:00', '13:00:00', '13:30:00', '14:00:00');
+        $tickets = Ticket::where('date', 'like', $date)->get()->pluck('time');
+        foreach ($tickets as $time) {
+            if (in_array(strval($time), $times)) {
+                $foundIndex = array_search(strval($time), $times);
+                unset($times[$foundIndex]);
+                $times = array_values($times);
+            }
+        }
+        return response()->json((array) $times);
     }
 
     /**

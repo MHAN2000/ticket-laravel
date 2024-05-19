@@ -15,6 +15,7 @@ Route::get('/cities/all-cities', [CityController::class, 'getCities'])->name('ci
 Route::get('/tickets/get-pdf/{id}', [TicketController::class, 'getPDF'])->name('tickets.getPDF');
 Route::get('/subject/all-subjects', [SubjectController::class, 'getSubjects'])->name('subjects.getSubjects');
 Route::get('/responsable/all-responsables', [ResponsableController::class, 'getResponsables'])->name('responsables.getResponsables');
+Route::get('/tickets/get-available-times/{date}', [TicketController::class, 'getAvailableTimes'])->name('tickets.available_times');
 Route::get('/education-levels/all-education-levels', [EducationLevelController::class, 'getEducationLevels'])->name('educationLevels.getEducationLevels');
 
 Route::group(['middleware' => ['auth']], function () {
@@ -25,7 +26,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::delete('/users/delete/{id}', [UserController::class, 'destroy'])->name('users.destroy');
     Route::post('/users/create', [UserController::class, 'store'])->name('users.store');
     Route::resource('/cities', CityController::class);
-    Route::resource('/tickets', TicketController::class)->except('index');
+    Route::resource('/tickets', TicketController::class);
     Route::resource('/subjects', SubjectController::class);
     Route::resource('/education-levels', EducationLevelController::class);
 

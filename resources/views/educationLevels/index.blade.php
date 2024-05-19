@@ -3,10 +3,13 @@
 @section('body')
 <div class="grid">
     <div class="col-12">
+        <h5>Niveles educativos</h5>
+        <button class="btn btn-primary" onclick="createEducationLevelModal()">Agregar</button>
+    </div>
+    <div class="col-12">
         <table id="educationLevelsTable">
             <thead>
                 <th>Nivel</th>
-                <th>Fecha creacion</th>
                 <th></th>
             </thead>
             <tbody>
@@ -17,4 +20,5 @@
 @endsection
 @push('scripts')
 <script src="{{ asset('js/educationLevelsIndex.js') }}" defer></script>
+<script src="{{ asset('js/educationLevelsCreateUpdate.js') }}" defer></script>
 @endpush
