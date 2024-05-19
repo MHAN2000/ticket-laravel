@@ -1,26 +1,26 @@
 <div class="col-4">
-    <input name="curp" placeholder="CURP" />
+    <input name="curp" placeholder="CURP" value="{{ optional($ticket ?? null)->curp }}" />
 </div>
 <div class="col-2">
-    <input name="phone_1" type="number" />
+    <input name="phone_1" type="number" value="{{ optional($ticket ?? null)->phone_1 }}" />
 </div>
 <div class="col-2">
-    <input name="phone_2" type="number" />
+    <input name="phone_2" type="number" value="{{ optional($ticket ?? null)->phone_2 }}" />
 </div>
 <div class="col-4">
-    <input name="name" placeholder="Nombre" />
+    <input name="name" placeholder="Nombre" value="{{ optional($ticket ?? null)->name }}" />
 </div>
 <div class="col-4">
-    <input name="last_name" placeholder="Apellido paterno" />
+    <input name="last_name" placeholder="Apellido paterno" value="{{ optional($ticket ?? null)->last_name }}" />
 </div>
 <div class="col-4">
-    <input name="second_last_name" placeholder="Apellido materno" />
+    <input name="second_last_name" placeholder="Apellido materno" value="{{ optional($ticket ?? null)->second_last_name }}" />
 </div>
 <div class="col-12">
-    <input name="email" placeholder="Email" /> 
+    <input name="email" placeholder="Email" value="{{ optional($ticket ?? null)->curp }}" /> 
 </div>
 <div class="col-12">
-    <input type="date" name="date" onchange="getAvailableTimes(event)"/>
+    <input type="date" name="date" onchange="getAvailableTimes(event)" value="{{ optional($ticket ?? null)->date }}"/>
 </div>
 <div class="col-12">
     <select name="time" id="availableHours">

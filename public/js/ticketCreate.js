@@ -82,3 +82,19 @@ const createTicket = async () => {
     }
     showToast('Error', 'Ha ocurrido un error', 'error');
 }
+
+const searchTicket = async () => {
+    event.preventDefault();
+    const curp = document.getElementById('curp').value;
+    const folio = document.getElementById('folio').value;
+    const url = route('tickets.search', [curp, folio])
+    const req = await fetch(url);
+    if (req.ok) {
+        const res = await req.json();
+        if (!!res) {
+            window.open(route('tickets.edit', res.id));
+        }
+
+        showToast('Error', 'No se ha encontrado un ticket', 'error');
+    }
+}

@@ -17,6 +17,12 @@ Route::get('/subject/all-subjects', [SubjectController::class, 'getSubjects'])->
 Route::get('/responsable/all-responsables', [ResponsableController::class, 'getResponsables'])->name('responsables.getResponsables');
 Route::get('/tickets/get-available-times/{date}', [TicketController::class, 'getAvailableTimes'])->name('tickets.available_times');
 Route::get('/education-levels/all-education-levels', [EducationLevelController::class, 'getEducationLevels'])->name('educationLevels.getEducationLevels');
+Route::get('/tickets/search', [TicketController::class, 'ticketIndex'])->name('ticket.ticketIndex');
+Route::post('/tickets', [TicketController::class, 'store'])->name('tickets.store');
+Route::get('/tickets/create', [TicketController::class, 'create'])->name('tickets.create');
+Route::get('/tickets/{ticket}/edit', [TicketController::class, 'edit'])->name('tickets.edit');
+Route::get('/tickets/search-by-curp/{curp}/{folio}', [TicketController::class, 'searchTicket'])->name('tickets.search');
+
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/', [UserController::class, 'home'])->name('home');
@@ -26,7 +32,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::delete('/users/delete/{id}', [UserController::class, 'destroy'])->name('users.destroy');
     Route::post('/users/create', [UserController::class, 'store'])->name('users.store');
     Route::resource('/cities', CityController::class);
-    Route::resource('/tickets', TicketController::class);
+    Route::resource('/tickets', TicketController::class)->except('create', 'store', 'edit', 'update');
     Route::resource('/subjects', SubjectController::class);
     Route::resource('/education-levels', EducationLevelController::class);
 

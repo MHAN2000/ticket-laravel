@@ -22,6 +22,15 @@ class TicketController extends Controller
         return view('tickets.index');
     }
 
+
+    public function ticketIndex() {
+        return view('tickets.ticketIndex');
+    }
+
+    public function searchTicket($curp, $folio) {
+        $ticket = Ticket::where('curp', $curp)->where('folio', $folio)->get()[0];
+        return response()->json($ticket);
+    }
     /**
      * Show the form for creating a new resource.
      */
@@ -64,9 +73,10 @@ class TicketController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Ticket $ticket)
+    public function edit($ticket)
     {
-        //
+        $ticket = Ticket::find($ticket);
+        return view('tickets.edit', compact('ticket'));
     }
 
     /**
